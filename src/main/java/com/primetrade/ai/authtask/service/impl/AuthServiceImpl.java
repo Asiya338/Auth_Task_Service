@@ -52,8 +52,35 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public AuthResponseDTO login(LoginRequestDTO request) {
-		// TODO Auto-generated method stub
-		return null;
+
+		log.info("Login for email | Auth Service : {}", request.getEmail());
+
+		User user = userRepository.findAll().stream().filter(u -> u.getEmail().equals(request.getEmail())).findFirst()
+				.orElse(null);
+
+		if (user == null) {
+
+			log.warn("User with email {} not found | Auth Service", request.getEmail());
+
+			throw new RuntimeException("User not found with Email");
+		}
+
+		if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+
+			log.warn("Invalid password for email {} | Auth Service", request.getEmail());
+
+			throw new RuntimeException("Invalid password");
+		}
+
+		AuthResponseDTO response = new AuthResponseDTO();
+		response.setAccessToken("temp-token");
+		response.setTokenType("Bearer");
+		response.setExpiresIn(3600L); // Example expiration time in seconds
+
+		log.info("User with email {} logged in successfully | Auth Service", request.getEmail());
+
+		return response;
+
 	}
 
 }
