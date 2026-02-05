@@ -16,8 +16,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "tasks")
 public class Task {
 
 	@Id
@@ -27,7 +29,7 @@ public class Task {
 	@Column(nullable = false)
 	private String title;
 
-	@Column(length = 1000)
+	@Column(length = 500)
 	private String description;
 
 	@Enumerated(EnumType.STRING)
