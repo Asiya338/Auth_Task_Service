@@ -1,8 +1,9 @@
 package com.primetrade.ai.authtask.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.primetrade.ai.authtask.service.TaskService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,10 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class TaskController {
 
-	@GetMapping("/test")
-	public String testEndpoint() {
-		log.info("Test endpoint called");
+	private final TaskService taskService;
 
-		return "Task Service is up and running!";
-	}
 }
