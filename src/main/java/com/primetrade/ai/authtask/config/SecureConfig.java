@@ -18,8 +18,8 @@ public class SecureConfig {
 
 		http.csrf(csrf -> csrf.disable()).formLogin(form -> form.disable()).httpBasic(basic -> basic.disable())
 				.authorizeHttpRequests(
-						auth -> auth.requestMatchers("/api/v1/tasks/**", "/swagger-ui/**", "/v3/api-docs/**")
-								.permitAll().anyRequest().authenticated());
+						auth -> auth.requestMatchers("/api/v1/auth/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+								.anyRequest().authenticated());
 
 		return http.build();
 	}
