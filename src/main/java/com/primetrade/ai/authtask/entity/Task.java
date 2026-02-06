@@ -2,7 +2,7 @@ package com.primetrade.ai.authtask.entity;
 
 import java.time.LocalDateTime;
 
-import com.primetrade.ai.authtask.constants.TaskStatus;
+import com.primetrade.ai.authtask.enums.TaskStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

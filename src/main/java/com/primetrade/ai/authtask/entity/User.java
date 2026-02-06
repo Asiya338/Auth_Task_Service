@@ -3,7 +3,7 @@ package com.primetrade.ai.authtask.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.primetrade.ai.authtask.constants.Role;
+import com.primetrade.ai.authtask.enums.Role;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

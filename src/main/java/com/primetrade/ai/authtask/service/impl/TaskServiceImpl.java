@@ -7,11 +7,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.primetrade.ai.authtask.constants.Role;
 import com.primetrade.ai.authtask.dto.task.TaskRequestDTO;
 import com.primetrade.ai.authtask.dto.task.TaskResponseDTO;
 import com.primetrade.ai.authtask.entity.Task;
 import com.primetrade.ai.authtask.entity.User;
+import com.primetrade.ai.authtask.enums.Role;
 import com.primetrade.ai.authtask.repository.TaskRepository;
 import com.primetrade.ai.authtask.repository.UserRepository;
 import com.primetrade.ai.authtask.service.TaskService;

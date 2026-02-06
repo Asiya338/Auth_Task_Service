@@ -4,8 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.primetrade.ai.authtask.constants.Role;
 import com.primetrade.ai.authtask.entity.User;
+import com.primetrade.ai.authtask.enums.Role;
 import com.primetrade.ai.authtask.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;

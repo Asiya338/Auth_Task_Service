@@ -1,6 +1,6 @@
 package com.primetrade.ai.authtask.dto.task;
 
-import com.primetrade.ai.authtask.constants.TaskStatus;
+import com.primetrade.ai.authtask.enums.TaskStatus;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

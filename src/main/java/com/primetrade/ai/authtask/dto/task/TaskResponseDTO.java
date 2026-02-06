@@ -2,7 +2,7 @@ package com.primetrade.ai.authtask.dto.task;
 
 import java.time.LocalDateTime;
 
-import com.primetrade.ai.authtask.constants.TaskStatus;
+import com.primetrade.ai.authtask.enums.TaskStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

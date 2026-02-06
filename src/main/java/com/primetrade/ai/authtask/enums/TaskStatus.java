@@ -1,4 +1,4 @@
-package com.primetrade.ai.authtask.constants;
+package com.primetrade.ai.authtask.enums;
 
 public enum TaskStatus {
 

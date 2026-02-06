@@ -4,12 +4,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.primetrade.ai.authtask.constants.Role;
+import com.primetrade.ai.authtask.constants.Constant;
 import com.primetrade.ai.authtask.dto.auth.AuthResponseDTO;
 import com.primetrade.ai.authtask.dto.auth.LoginRequestDTO;
 import com.primetrade.ai.authtask.dto.auth.RegisterRequestDTO;
 import com.primetrade.ai.authtask.entity.User;
+import com.primetrade.ai.authtask.enums.Role;
 import com.primetrade.ai.authtask.repository.UserRepository;
+import com.primetrade.ai.authtask.security.JWTUtil;
 import com.primetrade.ai.authtask.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class AuthServiceImpl implements AuthService {
 	private final ModelMapper modelMapper;
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final JWTUtil jwtUtil;
 
 	@Override
 	public void register(RegisterRequestDTO request) {
@@ -72,10 +75,14 @@ public class AuthServiceImpl implements AuthService {
 			throw new RuntimeException("Invalid password");
 		}
 
+		String token = jwtUtil.generateToken(user.getEmail());
+
+		Long expireAt = jwtUtil.getExpirationFromToken(token).getTime();
+
 		AuthResponseDTO response = new AuthResponseDTO();
-		response.setAccessToken("temp-token");
-		response.setTokenType("Bearer");
-		response.setExpiresIn(3600L); // Example expiration time in seconds
+		response.setAccessToken(token);
+		response.setTokenType(Constant.BEARER);
+		response.setExpiresAt(expireAt);
 
 		log.info("User with email {} logged in successfully | Auth Service", request.getEmail());
 

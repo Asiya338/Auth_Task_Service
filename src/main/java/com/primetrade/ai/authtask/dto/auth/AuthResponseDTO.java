@@ -11,5 +11,5 @@ public class AuthResponseDTO {
 
 	private String accessToken;
 	private String tokenType;
-	private Long expiresIn;
+	private Long expiresAt;
 }
