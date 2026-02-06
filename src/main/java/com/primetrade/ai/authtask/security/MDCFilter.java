@@ -7,6 +7,8 @@ import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.primetrade.ai.authtask.constants.Constant;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,7 +22,7 @@ public class MDCFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 
 		try {
-			MDC.put("traceId", UUID.randomUUID().toString());
+			MDC.put(Constant.MDC_TRACE_ID, UUID.randomUUID().toString());
 			filterChain.doFilter(request, response);
 		} finally {
 			MDC.clear();

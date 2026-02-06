@@ -1,33 +1,51 @@
-HELP.md
+# =========================
+# Maven / Java
+# =========================
 target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+*.class
+*.jar
+*.war
+*.ear
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
+# =========================
+# IDE files
+# =========================
+.idea/
 .vscode/
+.project
+.classpath
+.settings/
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# Environment / Secrets
+# =========================
+application-local.properties
+application-dev.properties
+application-prod.properties
+.env
+
+# =========================
+# Frontend (if applicable)
+# =========================
+node_modules/
+dist/
+build/
+
+# =========================
+# Test & temp files
+# =========================
+*.tmp
+*.swp
+*.bak
