@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Configuration
@@ -33,6 +36,13 @@ public class CustomConfig {
 
 		log.info("ModelMapper bean initialized successfully with STRICT matching strategy and skip null enabled");
 
+		return mapper;
+	}
+
+	@Bean
+	public ObjectMapper objectMapper() {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.registerModule(new JavaTimeModule());
 		return mapper;
 	}
 }
