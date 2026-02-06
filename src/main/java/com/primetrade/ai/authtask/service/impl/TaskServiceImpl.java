@@ -50,6 +50,10 @@ public class TaskServiceImpl implements TaskService {
 
 		User currentUser = getCurrentLoggedInUser();
 
+		if (taskRepository.existsByUserAndTitle(currentUser, request.getTitle())) {
+			throw new IllegalArgumentException("Task with same title already exists");
+		}
+
 		Task task = modelMapper.map(request, Task.class);
 		task.setUser(currentUser);
 

@@ -13,4 +13,6 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
 	List<Task> findByUser(User currentUser);
 
+	boolean existsByUserAndTitle(User user, String title);
+
 }

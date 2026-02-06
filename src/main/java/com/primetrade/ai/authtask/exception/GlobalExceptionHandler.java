@@ -10,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.primetrade.ai.authtask.constants.Constant;
 import com.primetrade.ai.authtask.enums.ErrorCodeEnum;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,7 +27,7 @@ public class GlobalExceptionHandler {
 		error.setMessage(message);
 		error.setPath(request.getRequestURI());
 		error.setHttpMethod(request.getMethod());
-		error.setTraceId(MDC.get("traceId"));
+		error.setTraceId(MDC.get(Constant.MDC_TRACE_ID));
 		error.setStatus(status);
 		error.setTimestamp(LocalDateTime.now());
 
@@ -64,6 +65,17 @@ public class GlobalExceptionHandler {
 				HttpStatus.NOT_FOUND.value());
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+	}
+
+	@ExceptionHandler(RuntimeException.class)
+	public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex, HttpServletRequest request) {
+
+		log.warn("Runtime exception: {}", ex.getMessage());
+
+		ErrorResponse error = buildErrorResponse(ErrorCodeEnum.INVALID_CREDENTIALS.name(), ex.getMessage(), request,
+				HttpStatus.UNAUTHORIZED.value());
+
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
 	}
 
 	@ExceptionHandler(Exception.class)

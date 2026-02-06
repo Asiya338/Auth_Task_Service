@@ -17,10 +17,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "tasks", uniqueConstraints = { @UniqueConstraint(columnNames = { "user_id", "title" }) })
 @Data
 public class Task {
 
